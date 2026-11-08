@@ -1,0 +1,479 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080710">
+<title>PASHA ASTRAL — Official Personal Space</title>
+
+<style>
+:root {
+  --bg:#080710;
+  --panel:#11101c;
+  --purple:#9565ff;
+  --blue:#478aff;
+  --text:#f6f3ff;
+  --muted:#9994ae;
+  --border:rgba(255,255,255,.09);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+.background{
+  position:fixed;inset:0;z-index:-1;
+  overflow:hidden;pointer-events:none;
+}
+.glow{
+  position:absolute;width:600px;height:600px;
+  border-radius:50%;filter:blur(120px);opacity:.17;
+  animation:float 13s ease-in-out infinite alternate;
+}
+.glow.one{background:#773cff;top:-300px;left:-200px}
+.glow.two{background:#145bff;right:-300px;bottom:-350px;animation-delay:-5s}
+@keyframes float{
+  to{transform:translate(90px,70px) scale(1.2)}
+}
+header{
+  position:fixed;top:0;width:100%;z-index:10;
+  background:rgba(8,7,16,.8);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+nav{
+  max-width:1200px;margin:auto;padding:19px 30px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.logo{font-size:19px;font-weight:800;letter-spacing:3px}
+.logo span{color:var(--purple)}
+.nav-links{display:flex;gap:25px}
+.nav-links a{font-size:12px;color:var(--muted);transition:.3s}
+.nav-links a:hover{color:white}
+.hero{
+  min-height:100vh;max-width:1200px;margin:auto;
+  padding:140px 45px 100px;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;
+}
+.eyebrow,.section-number{
+  color:#a78aff;font-size:11px;
+  letter-spacing:4px;font-weight:700;
+}
+.eyebrow{margin-bottom:30px}
+.hero h1{
+  font-size:clamp(58px,11vw,125px);
+  line-height:.95;letter-spacing:-7px;font-weight:850;
+  animation:appear 1.2s ease both;
+}
+.gradient{
+  display:block;
+  background:linear-gradient(100deg,#fff,#a58aff 55%,#528bff);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero p{
+  color:var(--muted);font-size:16px;
+  line-height:1.9;max-width:500px;margin-top:30px;
+}
+.button{
+  display:inline-block;width:fit-content;margin-top:35px;
+  padding:15px 24px;border:1px solid #895cff77;
+  border-radius:7px;
+  background:linear-gradient(120deg,#895cff22,#397dff22);
+  transition:.4s;
+}
+.button:hover{transform:translateY(-4px);box-shadow:0 10px 40px #895cff33}
+.scroll{
+  position:absolute;bottom:30px;color:#777187;
+  font-size:10px;letter-spacing:4px;
+}
+section{max-width:1200px;margin:auto;padding:95px 45px}
+.section-number{margin-bottom:20px}
+h2{font-size:clamp(34px,5vw,55px);letter-spacing:-2px;margin-bottom:25px}
+.description{color:var(--muted);line-height:2;max-width:680px;font-size:15px}
+.panel{
+  background:linear-gradient(145deg,#171526,#0e0d17);
+  border:1px solid var(--border);
+  border-radius:15px;padding:30px;
+}
+.profile-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:15px;margin-top:35px;
+}
+.info-item{
+  background:#ffffff05;border:1px solid var(--border);
+  padding:19px;border-radius:10px;transition:.3s;
+}
+.info-item:hover{border-color:#9565ff88;transform:translateY(-3px)}
+.info-label{font-size:10px;color:#9385b8;letter-spacing:2px;margin-bottom:9px}
+.info-value{font-size:15px;font-weight:600;overflow-wrap:anywhere}
+.secret{color:#a78aff;letter-spacing:2px}
+.stats{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:15px;margin-top:20px;
+}
+.stat{
+  padding:25px;background:#12111e;
+  border:1px solid var(--border);border-radius:12px;
+}
+.stat strong{
+  display:block;font-size:36px;
+  background:linear-gradient(90deg,#a58aff,#528bff);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.stat span{font-size:12px;color:var(--muted)}
+.cards{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:17px;margin-top:35px;
+}
+.card{
+  padding:27px;border:1px solid var(--border);
+  border-radius:12px;background:#ffffff05;
+  transition:.4s;
+}
+.card:hover{transform:translateY(-7px);border-color:#9565ff88}
+.card-icon{font-size:27px;margin-bottom:23px}
+.card h3{font-size:18px;margin-bottom:12px}
+.card p{font-size:13px;color:var(--muted);line-height:1.8}
+.device-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:12px;margin-top:30px;
+}
+.device{
+  padding:18px 20px;border:1px solid var(--border);
+  background:#ffffff04;border-radius:9px;
+  display:flex;align-items:center;gap:15px;
+  transition:.3s;
+}
+.device:hover{background:#895cff12;border-color:#9565ff66}
+.device-icon{font-size:22px}
+.device-name{font-size:13px;font-weight:600}
+.device-category{font-size:10px;color:var(--muted);margin-top:4px}
+.project{
+  padding:30px;border:1px solid var(--border);
+  border-radius:12px;background:#ffffff04;margin-top:25px;
+}
+.project p{color:var(--muted);font-size:14px;line-height:1.9;margin-top:12px}
+.secret-box{
+  margin-top:25px;padding:30px;
+  border:1px solid #895cff55;border-radius:12px;
+  background:linear-gradient(120deg,#895cff12,#397dff09);
+}
+.secret-box p{color:var(--muted);margin-top:12px;font-size:14px}
+.contact{
+  padding:40px;border:1px solid #895cff44;
+  border-radius:15px;
+  background:linear-gradient(120deg,#895cff14,#397dff0b);
+}
+.contact-row{
+  padding:17px 0;border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;gap:15px;
+  flex-wrap:wrap;font-size:14px;
+}
+.contact-row:last-child{border-bottom:0}
+.contact-label{color:var(--muted)}
+.contact-value{color:#c0aaff;overflow-wrap:anywhere}
+footer{
+  border-top:1px solid var(--border);
+  text-align:center;padding:35px 20px;
+  color:#777187;font-size:11px;letter-spacing:2px;
+}
+.reveal{
+  opacity:0;transform:translateY(30px);
+  transition:opacity .9s ease,transform .9s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@keyframes appear{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@media(max-width:750px){
+  nav{padding:17px 18px}
+  .nav-links{gap:11px}
+  .nav-links a{font-size:10px}
+  .logo{font-size:14px}
+  .hero{padding:130px 24px 100px}
+  .hero h1{letter-spacing:-3px}
+  section{padding:75px 24px}
+  .profile-grid,.device-grid{grid-template-columns:1fr}
+  .cards{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .contact{padding:25px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation:none!important;transition:none!important;
+    scroll-behavior:auto!important
+  }
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+
+<body>
+
+<div class="background">
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+</div>
+
+<header>
+<nav>
+  <a href="#" class="logo">PA<span>.</span></a>
+  <div class="nav-links">
+    <a href="#about">Профиль</a>
+    <a href="#devices">Устройства</a>
+    <a href="#interests">Интересы</a>
+    <a href="#contact">Связь</a>
+  </div>
+</nav>
+</header>
+
+<main>
+
+<!-- MAIN -->
+
+<div class="hero">
+  <div class="eyebrow">PERSONAL DIGITAL SPACE · 2026</div>
+  <h1>PASHA<span class="gradient">ASTRAL.</span></h1>
+  <p>
+    Салам Алейкум! Добро пожаловать
+    в моё личное цифровое пространство.
+    Здесь немного обо мне, моих интересах
+    и технологиях, которые меня окружают.
+  </p>
+  <a href="#about" class="button">Открыть мой профиль ↗</a>
+  <div class="scroll">SCROLL TO EXPLORE ↓</div>
+</div>
+
+<!-- PROFILE -->
+
+<section id="about" class="reveal">
+  <div class="section-number">01 / PERSONAL PROFILE</div>
+  <h2>Личное дело.</h2>
+  <p class="description">
+    Основная информация о владельце этого цифрового пространства.
+  </p>
+
+  <div class="profile-grid">
+    <div class="info-item">
+      <div class="info-label">ИМЯ</div>
+      <div class="info-value">Паша Астрал</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">ВОЗРАСТ</div>
+      <div class="info-value">18 лет</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">ДЕЯТЕЛЬНОСТЬ</div>
+      <div class="info-value">Фриланс</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">ОБУЧЕНИЕ</div>
+      <div class="info-value">Финансовый университет</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">МЕСТО ПРОЖИВАНИЯ</div>
+      <div class="info-value secret">CLASSIFIED 🔒</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">СИМПАТИИ</div>
+      <div class="info-value">Соня ♥</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">ВРЕДНЫЕ ПРИВЫЧКИ</div>
+      <div class="info-value">Есть</div>
+    </div>
+    <div class="info-item">
+      <div class="info-label">ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ</div>
+      <div class="info-value secret">TOP SECRET 🔒</div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <strong>37</strong>
+      <span>Найдено друзей</span>
+    </div>
+    <div class="stat">
+      <strong>∞</strong>
+      <span>Количество идей</span>
+    </div>
+  </div>
+</section>
+
+<!-- DEVICES -->
+
+<section id="devices" class="reveal">
+  <div class="section-number">02 / TECHNOLOGY ECOSYSTEM</div>
+  <h2>Мои устройства.</h2>
+  <p class="description">
+    Технологии и гаджеты, которые составляют мою личную экосистему.
+  </p>
+
+  <div class="device-grid">
+    <div class="device">
+      <div class="device-icon">📱</div>
+      <div><div class="device-name">iPhone 17 Pro</div>
+      <div class="device-category">SMARTPHONE</div></div>
+    </div>
+    <div class="device">
+      <div class="device-icon">📱</div>
+      <div><div class="device-name">iPhone 16 Pro Max</div>
+      <div class="device-category">SMARTPHONE</div></div>
+    </div>
+    <div class="device">
+      <div class="device-icon">📱</div>
+      <div><div class="device-name">Samsung S24 Ultra</div>
+      <div class="device-category">SMARTPHONE</div></div>
+    </div>
+    <div class="device">
+      <div class="device-icon">🎧</div>
+      <div><div class="device-name">AirPods Pro 3</div>
+      <div class="device-category">AUDIO</div></div>
+    </div>
+    <div class="device">
+      <div class="device-icon">📲</div>
+      <div><div class="device-name">iPad 2022</div>
+      <div class="device-category">TABLET</div></div>
+    </div>
+    <div class="device">
+      <div class="device-icon">⌚</div>
+      <div><div class="device-name">Apple Watch Ultra 2</div>
+      <div class="device-category">SMARTWATCH</div></div>
+    </div>
+    <div class="device">
+      <div class="device-icon">💻</div>
+      <div><div class="device-name">MacBook Air M5</div>
+      <div class="device-category">LAPTOP</div></div>
+    </div>
+    <div class="device">
+      <div class="device-icon">📲</div>
+      <div><div class="device-name">Huawei MatePad 10.4</div>
+      <div class="device-category">TABLET</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERESTS -->
+
+<section id="interests" class="reveal">
+  <div class="section-number">03 / INTERESTS & PASSIONS</div>
+  <h2>Мой мир.</h2>
+  <p class="description">
+    Три направления, которые занимают особое место в моей жизни.
+  </p>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">⌘</div>
+      <h3>Электроника</h3>
+      <p>
+        Фанатею от гаджетов, смартфонов,
+        новых технологий и электронной техники.
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-icon">◈</div>
+      <h3>Киберпространство</h3>
+      <p>
+        Цифровой мир, интернет, современные
+        технологии и виртуальная реальность.
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-icon">◉</div>
+      <h3>Единоборства</h3>
+      <p>
+        Спорт, боевые искусства,
+        дисциплина и развитие навыков.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CLASSIFIED -->
+
+<section class="reveal">
+  <div class="section-number">04 / RESTRICTED ACCESS</div>
+  <h2>Засекречено.</h2>
+  <div class="secret-box">
+    <div class="eyebrow">CONFIDENTIAL INFORMATION</div>
+    <h3>Доступ ограничен.</h3>
+    <p>
+      Некоторые детали моей жизни
+      останутся за пределами публичного профиля.
+      Не вся информация должна быть доступна каждому.
+    </p>
+    <p style="color:#a58aff;letter-spacing:3px;font-size:11px">
+      STATUS: CLASSIFIED 🔒
+    </p>
+  </div>
+</section>
+
+<!-- CONTACTS -->
+
+<section id="contact" class="reveal">
+  <div class="section-number">05 / CONTACT INFORMATION</div>
+  <h2>Связь со мной.</h2>
+
+  <div class="contact">
+    <div class="contact-row">
+      <span class="contact-label">TELEGRAM</span>
+      <a class="contact-value"
+         href="https://t.me/vvvvwwwwwwwww"
+         target="_blank" rel="noopener">
+        @vvvvwwwwwwwww ↗
+      </a>
+    </div>
+    <div class="contact-row">
+      <span class="contact-label">EMAIL</span>
+      <a class="contact-value" href="mailto:goodbye@XD.com">
+        goodbye@XD.com ↗
+      </a>
+    </div>
+    <div class="contact-row">
+      <span class="contact-label">PHONE 01</span>
+      <span class="contact-value">+7(###)555-5#-67</span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-label">PHONE 02</span>
+      <span class="contact-value">+7(###)555-5#-67</span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  PASHA ASTRAL · PERSONAL DIGITAL SPACE ·
+  <span id="year">2026</span>
+  <br><br>
+  SOME INFORMATION IS CLASSIFIED.
+</footer>
+
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:0.12});
+
+document.querySelectorAll(".reveal").forEach(el => {
+  observer.observe(el);
+});
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+</script>
+
+</body>
+</html>
